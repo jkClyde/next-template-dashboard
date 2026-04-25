@@ -1,11 +1,13 @@
+"use client"
+import { useSession } from "next-auth/react"
+
+
 import {
   Home,
   Inbox,
   Calendar,
   Search,
   Settings,
-  User2,
-  ChevronUp,
   Plus,
   Projector,
   ChevronDown,
@@ -71,15 +73,27 @@ const items = [
 ];
 
 const AppSidebar = () => {
+
+  const { data: session } = useSession()
+
+  const userName = session?.user?.name || "User"
+  const userImage = session?.user?.image || "/logo.svg"
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="py-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href="/">
-                <Image src="/logo.svg" alt="logo" width={20} height={20} />
-                <span>User</span>
+              <Link href="/" className="flex items-center gap-2">
+                {/*<Image*/}
+                {/*    src={userImage}*/}
+                {/*    alt={userName}*/}
+                {/*    width={24}*/}
+                {/*    height={24}*/}
+                {/*    className="rounded-full"*/}
+                {/*/>*/}
+                <span>NextJS Admin Dashboard</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -207,7 +221,14 @@ const AppSidebar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> John Doe <ChevronUp className="ml-auto" />
+                  <Image
+                      src={userImage}
+                      alt={userName}
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                  />
+                  <span>{userName}</span>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">

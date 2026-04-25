@@ -1,4 +1,6 @@
 "use client";
+import { useSession } from "next-auth/react"
+
 
 import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
 import Link from "next/link";
@@ -17,6 +19,10 @@ import { SidebarTrigger } from "./ui/sidebar";
 
 const Navbar = () => {
   const {  setTheme } = useTheme();
+  const { data: session } = useSession()
+
+  const userImage = session?.user?.image || "/logo.svg"
+
   return (
     <nav className="p-4 flex items-center justify-between sticky top-0 bg-background z-10">
       {/* LEFT */}
@@ -52,8 +58,15 @@ const Navbar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src="/avatar.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={userImage} alt={session?.user?.name || "User"} />
+              <AvatarFallback>
+                {session?.user?.name
+                    ?.split(" ")
+                    .map((word) => word[0])
+                    .join("")
+                    .slice(0, 2)
+                    .toUpperCase() || "U"}
+              </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent sideOffset={10}>
