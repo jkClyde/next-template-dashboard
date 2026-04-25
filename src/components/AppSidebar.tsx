@@ -43,6 +43,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
+import UserMenu from "@/components/UserMenu";
 
 const items = [
   {
@@ -215,28 +216,11 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <Image
-                      src={userImage}
-                      alt={userName}
-                      width={24}
-                      height={24}
-                      className="rounded-full"
-                  />
-                  <span>{userName}</span>
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Account</DropdownMenuItem>
-                <DropdownMenuItem>Setting</DropdownMenuItem>
-                <DropdownMenuItem>Sign out</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <UserMenu showName triggerClassName="w-full px-2 py-2 justify-start" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
