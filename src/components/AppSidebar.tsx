@@ -1,6 +1,4 @@
 "use client"
-import { useSession } from "next-auth/react"
-
 
 import {
   Home,
@@ -67,11 +65,6 @@ const items = [
 ];
 
 const AppSidebar = () => {
-
-
-
-
-
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="py-4">
