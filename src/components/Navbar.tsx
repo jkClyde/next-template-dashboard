@@ -1,49 +1,28 @@
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
-import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useTheme } from "next-themes";
+import { Button } from "./ui/button";
+import { SidebarTrigger } from "./ui/sidebar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import { useTheme } from "next-themes";
-import { SidebarTrigger } from "./ui/sidebar";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "./ui/alert-dialog";
 import UserMenu from "@/components/UserMenu";
 
 const Navbar = () => {
   const { setTheme } = useTheme();
-  const { data: session } = useSession();
-
-  const userImage = session?.user?.image || "/logo.svg";
 
   return (
       <nav className="p-4 flex items-center justify-between sticky top-0 bg-background z-10">
-        {/* LEFT */}
         <SidebarTrigger />
 
-        {/* RIGHT */}
         <div className="flex items-center gap-4">
           <Link href="/">Dashboard</Link>
 
-          {/* THEME MENU */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -66,9 +45,7 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* USER MENU */}
-          <UserMenu/>
-
+          <UserMenu />
         </div>
       </nav>
   );
