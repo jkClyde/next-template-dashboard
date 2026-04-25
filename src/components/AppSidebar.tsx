@@ -31,13 +31,6 @@ import {
   SidebarSeparator,
 } from "./ui/sidebar";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import {
   Collapsible,
   CollapsibleContent,
@@ -75,10 +68,9 @@ const items = [
 
 const AppSidebar = () => {
 
-  const { data: session } = useSession()
 
-  const userName = session?.user?.name || "User"
-  const userImage = session?.user?.image || "/logo.svg"
+
+
 
   return (
     <Sidebar collapsible="icon">
